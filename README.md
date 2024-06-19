@@ -161,36 +161,6 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 | ./proxmox_generic.sh -V windows2022-std -F windows -U true     | Windows Server 2022 Standard   | UEFI      |
 | ./proxmox_generic.sh -V windows2022-std -F windows -U false    | Windows Server 2022 Standard   | BIOS      |
 
-
-  | OS | script | Comments|
-  |----|--------|---------|
-  | Alma Linux 8.8        | `./proxmox_almalinux_88.sh` | |
-  | Alma Linux 8.9        | `./proxmox_almalinux_89.sh` | |
-  | Alma Linux 8.10       | `./proxmox_almalinux_810.sh` | |
-  | Alma Linux 9.2        | `./proxmox_almalinux_92.sh` | |
-  | Alma Linux 9.3        | `./proxmox_almalinux_93.sh` | |
-  | Alma Linux 9.4        | `./proxmox_almalinux_94.sh` | |
-  | OpenSuse Leap 15.5    | `./proxmox_opensuse_leap_15_5.sh` | |
-  | Oracle Linux 8.8      | `./proxmox_oraclelinux_88.sh` | |
-  | Oracle Linux 8.9      | `./proxmox_oraclelinux_89.sh` | |
-  | Oracle Linux 8.10     | `./proxmox_oraclelinux_810.sh` | |
-  | Oracle Linux 9.2      | `./proxmox_oraclelinux_92.sh` | |
-  | Oracle Linux 9.3      | `./proxmox_oraclelinux_93.sh` | |
-  | Oracle Linux 9.4      | `./proxmox_oraclelinux_94.sh` | |
-  | Rocky Linux 8.8       | `./proxmox_rockylinux_88.sh` | |
-  | Rocky Linux 8.9       | `./proxmox_rockylinux_89.sh` | |
-  | Rocky Linux 9.2       | `./proxmox_rockylinux_92.sh` | |
-  | Rocky Linux 9.3       | `./proxmox_rockylinux_93.sh` | |
-  | Rocky Linux 9.4       | `./proxmox_rockylinux_94.sh` | |
-  | Ubuntu 22.04 HWE LTS  | `./proxmox_ubuntu_2204_hwe.sh` | HWE Kernel|
-  | Ubuntu 22.04 LTS      | `./proxmox_ubuntu_2204.sh` | |
-  | Ubuntu 23.04          | `./proxmox_ubuntu_2304.sh` | |
-  | Ubuntu 24.04          | `./proxmox_ubuntu_2404.sh` | |
-  | Microsoft Windows 2022 Datacenter   | `./proxmox_windows_2022-dc.sh` |Datacenter Edition |
-  | Microsoft Windows 2022 Standard     | `./proxmox_windows_2022-std.sh` |Standard Edition |
-  | Microsoft Windows 2019 Standard     | `./proxmox_windows_2019-std.sh` |Standard Edition |
-  | Microsoft Windows 2019 Datacenter   | `./proxmox_windows_2019-dc.sh` |Datacenter Edition |
-
 ### Provisioning
 
 - For RHEl-based machines, provisioning is done by Ansible Playbooks `extra/playbooks` using variables from `variables/` folder
