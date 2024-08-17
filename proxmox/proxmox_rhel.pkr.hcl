@@ -125,7 +125,7 @@ variable "network_adapters" {
     model       = "virtio"
     firewall    = false
     mac_address = ""
-    vlan_tag    = "1"
+    vlan_tag    = ""
   }
 }
 
@@ -282,6 +282,7 @@ source "proxmox-iso" "linux-efi" {
     model                   = "${var.network_adapters.model}"
     firewall                = "${var.network_adapters.firewall}"
     mac_address             = "${var.network_adapters.mac_address}"
+    vlan_tag                = "${var.network_adapters.vlan_tag}"
   }
   node                      = "${var.proxmox_node}"
   os                        = "${var.os}"

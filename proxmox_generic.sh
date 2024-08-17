@@ -111,6 +111,10 @@ echo -e "${BLUE}-----------------------${NC}"
 # Start message
 echo -e "${YELLOW}Starting the Packer script...${NC}"
 
+# Packer init
+echo -e "${YELLOW}Initializing Packer...${NC}"
+packer init -upgrade .
+
 # Validate with Packer
 if [ "$uefi" == "true" ]; then
     if [ -e "$uefi_var_file" ]; then
