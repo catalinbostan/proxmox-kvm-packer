@@ -148,6 +148,8 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 | ./proxmox_generic.sh -V rockylinux93 -F rhel -U false       | Rocky Linux 9.3                | BIOS      |
 | ./proxmox_generic.sh -V rockylinux94 -F rhel -U true        | Rocky Linux 9.4                | UEFI      |
 | ./proxmox_generic.sh -V rockylinux94 -F rhel -U false       | Rocky Linux 9.4                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux95 -F rhel -U true        | Rocky Linux 9.5                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux95 -F rhel -U false       | Rocky Linux 9.5                | BIOS      |
 | ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U true        | Ubuntu 22.04                   | UEFI      |
 | ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U false       | Ubuntu 22.04                   | BIOS      |
 | ./proxmox_generic.sh -V ubuntu2304 -F ubuntu -U true        | Ubuntu 23.04                   | UEFI      |
