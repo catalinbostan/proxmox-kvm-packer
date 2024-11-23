@@ -131,4 +131,3 @@ kernel_parameters:
   - key: "fsck.repair"
     value: "yes"
     state: present
-
