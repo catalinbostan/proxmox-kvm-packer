@@ -118,6 +118,8 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 | ./proxmox_generic.sh -V almalinux93 -F rhel -U false        | AlmaLinux 9.3                  | BIOS      |
 | ./proxmox_generic.sh -V almalinux94 -F rhel -U true         | AlmaLinux 9.4                  | UEFI      |
 | ./proxmox_generic.sh -V almalinux94 -F rhel -U false        | AlmaLinux 9.4                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux95 -F rhel -U true         | AlmaLinux 9.5                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux95 -F rhel -U false        | AlmaLinux 9.5                  | BIOS      |
 | ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U true  | openSUSE Leap 15.5             | UEFI      |
 | ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U false | openSUSE Leap 15.5             | BIOS      |
 | ./proxmox_generic.sh -V opensuse_leap_15_6 -F sles -U true  | openSUSE Leap 15.6             | UEFI      |

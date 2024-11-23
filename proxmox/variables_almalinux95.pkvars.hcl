@@ -18,7 +18,7 @@ disks = {
     discard               = true
 }
 insecure_skip_tls_verify  = true
-iso_file                  = "images:iso/AlmaLinux-9.4-x86_64-dvd.iso"
+iso_file                  = "images:iso/AlmaLinux-9.5-x86_64-dvd.iso"
 memory                    = "4096"
 network_adapters = {
     bridge                = "vmbr0"
@@ -34,5 +34,5 @@ sockets                   = "1"
 ssh_password              = "password"
 ssh_username              = "root"
 task_timeout              = "20m"
-template                  = "almalinux9.4"
+template                  = "almalinux9.5"
 unmount_iso               = true
