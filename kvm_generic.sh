@@ -166,4 +166,3 @@ hours=$((time_diff_seconds / 3600))
 minutes=$(((time_diff_seconds % 3600) / 60))
 seconds=$((time_diff_seconds % 60))
 echo -e "${GREEN}Packer build took: ${hours} hours, ${minutes} minutes, and ${seconds} seconds.${NC}"
-
