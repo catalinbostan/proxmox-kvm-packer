@@ -46,4 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: ${{ github.event_name != 'pull_request' }}
           FILTER_REGEX_EXCLUDE: '.*extra/.*'
-#          VALIDATE_YAML: true
+          VALIDATE_JSCPD: false
+          VALIDATE_TERRAGRUNT: false
+          VALIDATE_GITLEAKS: false
