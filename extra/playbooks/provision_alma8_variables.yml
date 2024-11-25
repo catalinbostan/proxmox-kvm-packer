@@ -141,3 +141,4 @@ gpgkey:
     state: present
   - url: https://repo.almalinux.org/almalinux/RPM-GPG-KEY-AlmaLinux-8
     state: present
+

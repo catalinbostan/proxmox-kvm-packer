@@ -39,9 +39,8 @@
       tags:
         - assert
     - name: assert_root_partition_has_16_GB_of_free_space
-      ansible.builtin.assert:
-        { that: item.mount == '/' or item.size_available > 17179869184 }
-      loop: "{{ ansible_mounts }}"
+      ansible.builtin.assert: {that: item.mount == '/' or item.size_available > 17179869184}
+      loop: '{{ ansible_mounts }}'
       ignore_errors: false
       when: item.mount == '/'
       register: freespace
@@ -142,7 +141,7 @@
       changed_when: true
     - name: install_extra_groups
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: '{{ item }}'
         state: present
       loop: "{{ yum_extra_groups }}"
       retries: "{{ retries_count }}"
@@ -153,7 +152,7 @@
     # let's install extra packages
     - name: install_extra_packages
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: '{{ item }}'
         state: present
       loop: "{{ yum_extra_packages }}"
       retries: "{{ retries_count }}"
@@ -163,7 +162,7 @@
     # let's install extra_epel_packages
     - name: install_extra_epel_packages
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: '{{ item }}'
         state: present
       loop: "{{ yum_extra_epel_packages }}"
       retries: "{{ retries_count }}"
@@ -214,6 +213,7 @@
           delay: "{{ delay_time }}"
           until: r_start_webmin is success
 
+
     - name: start_cockpit_block
       when: install_cockpit is defined and install_cockpit
       block:
@@ -239,7 +239,7 @@
           ansible.builtin.get_url:
             url: "{{ item.url }}"
             dest: "{{ item.dest }}"
-            mode: "0644"
+            mode: '0644'
           register: r_neofetch_repository
           retries: "{{ retries_count }}"
           delay: "{{ delay_time }}"
@@ -260,7 +260,7 @@
           ansible.builtin.command: neofetch
           when: r_neofetch_repository is success
           changed_when: false
-          #          ignore_errors: true
+#          ignore_errors: true
           any_errors_fatal: false
           failed_when: false
         - name: create_config_folder
@@ -594,8 +594,8 @@
         - name: change_sshd_dns_settings
           ansible.builtin.lineinfile:
             path: /etc/ssh/sshd_config
-            regexp: "UseDNS"
-            line: "UseDNS no"
+            regexp: 'UseDNS'
+            line: 'UseDNS no'
             backrefs: true
             state: present
         # required sysctl entries
@@ -685,15 +685,15 @@
         # let's clean logs and leftovers
         - name: cleaning_stuff
           ansible.builtin.shell: |
-            truncate -s 0 /var/log/*
-            truncate -s 0 -c /var/log/**/*
-            find /var/log -type f -name \"*.[0-99].gz\" -exec rm {} +
-            rm -rfv /etc/ansible/*
-            rm -rfv /var/log/anaconda/*
-            rm -rfv /var/cache/libvirt/*
-            rm -rfv /var/cache/powertop/*
-            rm -rfv /var/crash/*
-            rm -rfv /var/tmp/*
+             truncate -s 0 /var/log/*
+             truncate -s 0 -c /var/log/**/*
+             find /var/log -type f -name \"*.[0-99].gz\" -exec rm {} +
+             rm -rfv /etc/ansible/*
+             rm -rfv /var/log/anaconda/*
+             rm -rfv /var/cache/libvirt/*
+             rm -rfv /var/cache/powertop/*
+             rm -rfv /var/crash/*
+             rm -rfv /var/tmp/*
           any_errors_fatal: false
           failed_when: false
           changed_when: false
