@@ -45,5 +45,5 @@ jobs:
           DEFAULT_BRANCH: ${{ github.ref_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: ${{ github.event_name != 'pull_request' }}
-          FILTER_REGEX_EXCLUDE: '.*extras/.*'
+          FILTER_REGEX_EXCLUDE: '.*extra/.*'
 #          VALIDATE_YAML: true
