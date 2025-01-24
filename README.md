@@ -50,7 +50,7 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 
 ### Usage
 
-- Init packer by running  `packer init config.pkr.hcl` or `packer init -upgrade config.pkr.hcl`
+- Init packer by running `packer init config.pkr.hcl` or `packer init -upgrade config.pkr.hcl`
 - Init your ansible by running `ansible-galaxy collection install --upgrade -r ./extra/playbooks/requirements.yml`
 - Generate new user or token for existing user in Proxmox - `Datacenter/Pemissions/API Tokens`
 
@@ -62,11 +62,11 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 
 - create and use env variables for secrets `/secrets/proxmox.sh` with content similar to:
 
-    ```bash
-    export PROXMOX_URL="https://someproxmoxserver:8006/api2/json"
-    export PROXMOX_USERNAME="root@pam!packer"
-    export PROXMOX_TOKEN="xxxxxxxxxxxxxxxxx"
-    ```
+  ```bash
+  export PROXMOX_URL="https://someproxmoxserver:8006/api2/json"
+  export PROXMOX_USERNAME="root@pam!packer"
+  export PROXMOX_TOKEN="xxxxxxxxxxxxxxxxx"
+  ```
 
 - adjust required variables in `proxmox/variables*.pkvars.hcl` files especially datastore names (`storage_pool`, `iso_file`, `iso_storage_pool`) in:
 
@@ -104,92 +104,68 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 
 - run `proxmox_generic` script with proper parameters for dedicated OS
 
-| Command                                                        | OS FullName and Version        | Boot Type |
-|----------------------------------------------------------------|--------------------------------|-----------|
-| ./proxmox_generic.sh -V almalinux88 -F rhel -U true            | AlmaLinux 8.8                  | UEFI      |
-| ./proxmox_generic.sh -V almalinux88 -F rhel -U false           | AlmaLinux 8.8                  | BIOS      |
-| ./proxmox_generic.sh -V almalinux89 -F rhel -U true            | AlmaLinux 8.9                  | UEFI      |
-| ./proxmox_generic.sh -V almalinux89 -F rhel -U false           | AlmaLinux 8.9                  | BIOS      |
-| ./proxmox_generic.sh -V almalinux810 -F rhel -U true           | AlmaLinux 8.10                 | UEFI      |
-| ./proxmox_generic.sh -V almalinux810 -F rhel -U false          | AlmaLinux 8.10                 | BIOS      |
-| ./proxmox_generic.sh -V almalinux92 -F rhel -U true            | AlmaLinux 9.2                  | UEFI      |
-| ./proxmox_generic.sh -V almalinux92 -F rhel -U false           | AlmaLinux 9.2                  | BIOS      |
-| ./proxmox_generic.sh -V almalinux93 -F rhel -U true            | AlmaLinux 9.3                  | UEFI      |
-| ./proxmox_generic.sh -V almalinux93 -F rhel -U false           | AlmaLinux 9.3                  | BIOS      |
-| ./proxmox_generic.sh -V almalinux94 -F rhel -U true            | AlmaLinux 9.4                  | UEFI      |
-| ./proxmox_generic.sh -V almalinux94 -F rhel -U false           | AlmaLinux 9.4                  | BIOS      |
-| ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U true     | openSUSE Leap 15.5             | UEFI      |
-| ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U false    | openSUSE Leap 15.5             | BIOS      |
-| ./proxmox_generic.sh -V opensuse_leap_15_6 -F sles -U true     | openSUSE Leap 15.6             | UEFI      |
-| ./proxmox_generic.sh -V opensuse_leap_15_6 -F sles -U false    | openSUSE Leap 15.6             | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux810 -F rhel -U true         | Oracle Linux 8.10              | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux810 -F rhel -U false        | Oracle Linux 8.10              | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux88 -F rhel -U true          | Oracle Linux 8.8               | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux88 -F rhel -U false         | Oracle Linux 8.8               | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux89 -F rhel -U true          | Oracle Linux 8.9               | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux89 -F rhel -U false         | Oracle Linux 8.9               | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux92 -F rhel -U true          | Oracle Linux 9.2               | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux92 -F rhel -U false         | Oracle Linux 9.2               | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux93 -F rhel -U true          | Oracle Linux 9.3               | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux93 -F rhel -U false         | Oracle Linux 9.3               | BIOS      |
-| ./proxmox_generic.sh -V oraclelinux94 -F rhel -U true          | Oracle Linux 9.4               | UEFI      |
-| ./proxmox_generic.sh -V oraclelinux94 -F rhel -U false         | Oracle Linux 9.4               | BIOS      |
-| ./proxmox_generic.sh -V rockylinux810 -F rhel -U true          | Rocky Linux 8.10               | UEFI      |
-| ./proxmox_generic.sh -V rockylinux810 -F rhel -U false         | Rocky Linux 8.10               | BIOS      |
-| ./proxmox_generic.sh -V rockylinux88 -F rhel -U true           | Rocky Linux 8.8                | UEFI      |
-| ./proxmox_generic.sh -V rockylinux88 -F rhel -U false          | Rocky Linux 8.8                | BIOS      |
-| ./proxmox_generic.sh -V rockylinux89 -F rhel -U true           | Rocky Linux 8.9                | UEFI      |
-| ./proxmox_generic.sh -V rockylinux89 -F rhel -U false          | Rocky Linux 8.9                | BIOS      |
-| ./proxmox_generic.sh -V rockylinux92 -F rhel -U true           | Rocky Linux 9.2                | UEFI      |
-| ./proxmox_generic.sh -V rockylinux92 -F rhel -U false          | Rocky Linux 9.2                | BIOS      |
-| ./proxmox_generic.sh -V rockylinux93 -F rhel -U true           | Rocky Linux 9.3                | UEFI      |
-| ./proxmox_generic.sh -V rockylinux93 -F rhel -U false          | Rocky Linux 9.3                | BIOS      |
-| ./proxmox_generic.sh -V rockylinux94 -F rhel -U true           | Rocky Linux 9.4                | UEFI      |
-| ./proxmox_generic.sh -V rockylinux94 -F rhel -U false          | Rocky Linux 9.4                | BIOS      |
-| ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U true           | Ubuntu 22.04                   | UEFI      |
-| ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U false          | Ubuntu 22.04                   | BIOS      |
-| ./proxmox_generic.sh -V ubuntu2304 -F ubuntu -U true           | Ubuntu 23.04                   | UEFI      |
-| ./proxmox_generic.sh -V ubuntu2304 -F ubuntu -U false          | Ubuntu 23.04                   | BIOS      |
-| ./proxmox_generic.sh -V ubuntu2404 -F ubuntu -U true           | Ubuntu 24.04                   | UEFI      |
-| ./proxmox_generic.sh -V ubuntu2404 -F ubuntu -U false          | Ubuntu 24.04                   | BIOS      |
-| ./proxmox_generic.sh -V windows2019-dc -F windows -U true      | Windows Server 2019 Datacenter | UEFI      |
-| ./proxmox_generic.sh -V windows2019-dc -F windows -U false     | Windows Server 2019 Datacenter | BIOS      |
-| ./proxmox_generic.sh -V windows2019-std -F windows -U true     | Windows Server 2019 Standard   | UEFI      |
-| ./proxmox_generic.sh -V windows2019-std -F windows -U false    | Windows Server 2019 Standard   | BIOS      |
-| ./proxmox_generic.sh -V windows2022-dc -F windows -U true      | Windows Server 2022 Datacenter | UEFI      |
-| ./proxmox_generic.sh -V windows2022-dc -F windows -U false     | Windows Server 2022 Datacenter | BIOS      |
-| ./proxmox_generic.sh -V windows2022-std -F windows -U true     | Windows Server 2022 Standard   | UEFI      |
-| ./proxmox_generic.sh -V windows2022-std -F windows -U false    | Windows Server 2022 Standard   | BIOS      |
-
-
-  | OS | script | Comments|
-  |----|--------|---------|
-  | Alma Linux 8.8        | `./proxmox_almalinux_88.sh` | |
-  | Alma Linux 8.9        | `./proxmox_almalinux_89.sh` | |
-  | Alma Linux 8.10       | `./proxmox_almalinux_810.sh` | |
-  | Alma Linux 9.2        | `./proxmox_almalinux_92.sh` | |
-  | Alma Linux 9.3        | `./proxmox_almalinux_93.sh` | |
-  | Alma Linux 9.4        | `./proxmox_almalinux_94.sh` | |
-  | OpenSuse Leap 15.5    | `./proxmox_opensuse_leap_15_5.sh` | |
-  | Oracle Linux 8.8      | `./proxmox_oraclelinux_88.sh` | |
-  | Oracle Linux 8.9      | `./proxmox_oraclelinux_89.sh` | |
-  | Oracle Linux 8.10     | `./proxmox_oraclelinux_810.sh` | |
-  | Oracle Linux 9.2      | `./proxmox_oraclelinux_92.sh` | |
-  | Oracle Linux 9.3      | `./proxmox_oraclelinux_93.sh` | |
-  | Oracle Linux 9.4      | `./proxmox_oraclelinux_94.sh` | |
-  | Rocky Linux 8.8       | `./proxmox_rockylinux_88.sh` | |
-  | Rocky Linux 8.9       | `./proxmox_rockylinux_89.sh` | |
-  | Rocky Linux 9.2       | `./proxmox_rockylinux_92.sh` | |
-  | Rocky Linux 9.3       | `./proxmox_rockylinux_93.sh` | |
-  | Rocky Linux 9.4       | `./proxmox_rockylinux_94.sh` | |
-  | Ubuntu 22.04 HWE LTS  | `./proxmox_ubuntu_2204_hwe.sh` | HWE Kernel|
-  | Ubuntu 22.04 LTS      | `./proxmox_ubuntu_2204.sh` | |
-  | Ubuntu 23.04          | `./proxmox_ubuntu_2304.sh` | |
-  | Ubuntu 24.04          | `./proxmox_ubuntu_2404.sh` | |
-  | Microsoft Windows 2022 Datacenter   | `./proxmox_windows_2022-dc.sh` |Datacenter Edition |
-  | Microsoft Windows 2022 Standard     | `./proxmox_windows_2022-std.sh` |Standard Edition |
-  | Microsoft Windows 2019 Standard     | `./proxmox_windows_2019-std.sh` |Standard Edition |
-  | Microsoft Windows 2019 Datacenter   | `./proxmox_windows_2019-dc.sh` |Datacenter Edition |
+| Command                                                     | OS FullName and Version        | Boot Type |
+| ----------------------------------------------------------- | ------------------------------ | --------- |
+| ./proxmox_generic.sh -V almalinux88 -F rhel -U true         | AlmaLinux 8.8                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux88 -F rhel -U false        | AlmaLinux 8.8                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux89 -F rhel -U true         | AlmaLinux 8.9                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux89 -F rhel -U false        | AlmaLinux 8.9                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux810 -F rhel -U true        | AlmaLinux 8.10                 | UEFI      |
+| ./proxmox_generic.sh -V almalinux810 -F rhel -U false       | AlmaLinux 8.10                 | BIOS      |
+| ./proxmox_generic.sh -V almalinux92 -F rhel -U true         | AlmaLinux 9.2                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux92 -F rhel -U false        | AlmaLinux 9.2                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux93 -F rhel -U true         | AlmaLinux 9.3                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux93 -F rhel -U false        | AlmaLinux 9.3                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux94 -F rhel -U true         | AlmaLinux 9.4                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux94 -F rhel -U false        | AlmaLinux 9.4                  | BIOS      |
+| ./proxmox_generic.sh -V almalinux95 -F rhel -U true         | AlmaLinux 9.5                  | UEFI      |
+| ./proxmox_generic.sh -V almalinux95 -F rhel -U false        | AlmaLinux 9.5                  | BIOS      |
+| ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U true  | openSUSE Leap 15.5             | UEFI      |
+| ./proxmox_generic.sh -V opensuse_leap_15_5 -F sles -U false | openSUSE Leap 15.5             | BIOS      |
+| ./proxmox_generic.sh -V opensuse_leap_15_6 -F sles -U true  | openSUSE Leap 15.6             | UEFI      |
+| ./proxmox_generic.sh -V opensuse_leap_15_6 -F sles -U false | openSUSE Leap 15.6             | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux810 -F rhel -U true      | Oracle Linux 8.10              | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux810 -F rhel -U false     | Oracle Linux 8.10              | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux88 -F rhel -U true       | Oracle Linux 8.8               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux88 -F rhel -U false      | Oracle Linux 8.8               | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux89 -F rhel -U true       | Oracle Linux 8.9               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux89 -F rhel -U false      | Oracle Linux 8.9               | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux92 -F rhel -U true       | Oracle Linux 9.2               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux92 -F rhel -U false      | Oracle Linux 9.2               | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux93 -F rhel -U true       | Oracle Linux 9.3               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux93 -F rhel -U false      | Oracle Linux 9.3               | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux94 -F rhel -U true       | Oracle Linux 9.4               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux94 -F rhel -U false      | Oracle Linux 9.4               | BIOS      |
+| ./proxmox_generic.sh -V oraclelinux95 -F rhel -U true       | Oracle Linux 9.4               | UEFI      |
+| ./proxmox_generic.sh -V oraclelinux95 -F rhel -U false      | Oracle Linux 9.4               | BIOS      |
+| ./proxmox_generic.sh -V rockylinux810 -F rhel -U true       | Rocky Linux 8.10               | UEFI      |
+| ./proxmox_generic.sh -V rockylinux810 -F rhel -U false      | Rocky Linux 8.10               | BIOS      |
+| ./proxmox_generic.sh -V rockylinux88 -F rhel -U true        | Rocky Linux 8.8                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux88 -F rhel -U false       | Rocky Linux 8.8                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux89 -F rhel -U true        | Rocky Linux 8.9                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux89 -F rhel -U false       | Rocky Linux 8.9                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux92 -F rhel -U true        | Rocky Linux 9.2                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux92 -F rhel -U false       | Rocky Linux 9.2                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux93 -F rhel -U true        | Rocky Linux 9.3                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux93 -F rhel -U false       | Rocky Linux 9.3                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux94 -F rhel -U true        | Rocky Linux 9.4                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux94 -F rhel -U false       | Rocky Linux 9.4                | BIOS      |
+| ./proxmox_generic.sh -V rockylinux95 -F rhel -U true        | Rocky Linux 9.5                | UEFI      |
+| ./proxmox_generic.sh -V rockylinux95 -F rhel -U false       | Rocky Linux 9.5                | BIOS      |
+| ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U true        | Ubuntu 22.04                   | UEFI      |
+| ./proxmox_generic.sh -V ubuntu2204 -F ubuntu -U false       | Ubuntu 22.04                   | BIOS      |
+| ./proxmox_generic.sh -V ubuntu2304 -F ubuntu -U true        | Ubuntu 23.04                   | UEFI      |
+| ./proxmox_generic.sh -V ubuntu2304 -F ubuntu -U false       | Ubuntu 23.04                   | BIOS      |
+| ./proxmox_generic.sh -V ubuntu2404 -F ubuntu -U true        | Ubuntu 24.04                   | UEFI      |
+| ./proxmox_generic.sh -V ubuntu2404 -F ubuntu -U false       | Ubuntu 24.04                   | BIOS      |
+| ./proxmox_generic.sh -V windows2019-dc -F windows -U true   | Windows Server 2019 Datacenter | UEFI      |
+| ./proxmox_generic.sh -V windows2019-dc -F windows -U false  | Windows Server 2019 Datacenter | BIOS      |
+| ./proxmox_generic.sh -V windows2019-std -F windows -U true  | Windows Server 2019 Standard   | UEFI      |
+| ./proxmox_generic.sh -V windows2019-std -F windows -U false | Windows Server 2019 Standard   | BIOS      |
+| ./proxmox_generic.sh -V windows2022-dc -F windows -U true   | Windows Server 2022 Datacenter | UEFI      |
+| ./proxmox_generic.sh -V windows2022-dc -F windows -U false  | Windows Server 2022 Datacenter | BIOS      |
+| ./proxmox_generic.sh -V windows2022-std -F windows -U true  | Windows Server 2022 Standard   | UEFI      |
+| ./proxmox_generic.sh -V windows2022-std -F windows -U false | Windows Server 2022 Standard   | BIOS      |
 
 ### Provisioning
 
@@ -197,18 +173,18 @@ Consider buying me a coffee if you like my work. All donations are appreciated. 
 
 example:
 
-  ```yaml
-  install_epel:                  true
-  install_webmin:                false
-  install_hyperv:                false
-  install_cockpit:               true
-  install_neofetch:              true
-  install_updates:               true
-  install_extra_groups:          true
-  docker_prepare:                false
-  extra_device:                  ""
-  install_motd:                  true
-  ```
+```yaml
+install_epel: true
+install_webmin: false
+install_hyperv: false
+install_cockpit: true
+install_neofetch: true
+install_updates: true
+install_extra_groups: true
+docker_prepare: false
+extra_device: ""
+install_motd: true
+```
 
 - For Ubuntu-based machines provisioning is done by scripts from `extra/files/ubuntu*` folders
 
@@ -248,7 +224,7 @@ KVM builds are separated by cloud-init groups. Currently supported groups are:
 
 ### KVM scripts usage
 
-- Init packer by running  `packer init config.pkr.hcl`
+- Init packer by running `packer init config.pkr.hcl`
 - Scripts have `kvm_` prefix
 
 #### Parameters
@@ -256,7 +232,7 @@ KVM builds are separated by cloud-init groups. Currently supported groups are:
 KVM building scripts will take 2 runtime parameters:
 
 - $1 - PACKER_LOG settings, can be 0 or 1 (can be skipped)
-- $2 - cloud-init group, can be:  `generic`, `oci` or `alicloud` (can be skipped)
+- $2 - cloud-init group, can be: `generic`, `oci` or `alicloud` (can be skipped)
 
 Example:
 
@@ -272,44 +248,44 @@ Example 2
 
 #### KVM building scripts, by OS with cloud parameters
 
-| OS | script | Comments|Generic|OCI|AliCloud|
-|----|--------|---------|-------|---|--------|
-| Alma Linux 8.7          | `./kvm_almalinux87.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 8.8          | `./kvm_almalinux88.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 8.9          | `./kvm_almalinux89.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 8.10         | `./kvm_almalinux810.sh` | | generic/empty | oci | alicloud |
-| Alma Linux 9.0          | `./kvm_almalinux90.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 9.1          | `./kvm_almalinux91.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 9.2          | `./kvm_almalinux92.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 9.3          | `./kvm_almalinux93.sh`  | | generic/empty | oci | alicloud |
-| Alma Linux 9.4          | `./kvm_almalinux94.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 8.6        | `./kvm_oraclelinux86.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 8.7        | `./kvm_oraclelinux87.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 8.8        | `./kvm_oraclelinux88.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 8.9        | `./kvm_oraclelinux89.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 8.10       | `./kvm_oraclelinux810.sh` | | generic/empty | oci | alicloud |
-| Oracle Linux 9.0        | `./kvm_oraclelinux90.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 9.1        | `./kvm_oraclelinux91.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 9.2        | `./kvm_oraclelinux92.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 9.3        | `./kvm_oraclelinux93.sh`  | | generic/empty | oci | alicloud |
-| Oracle Linux 9.4        | `./kvm_oraclelinux94.sh`  | | generic/empty | oci | alicloud |
-| Rocky Linux 8.7         | `./kvm_rockylinux87.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 8.8         | `./kvm_rockylinux88.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 8.9         | `./kvm_rockylinux89.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 9.0         | `./kvm_rockylinux90.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 9.1         | `./kvm_rockylinux91.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 9.2         | `./kvm_rockylinux92.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 9.3         | `./kvm_rockylinux93.sh`   | | generic/empty | oci | alicloud |
-| Rocky Linux 9.4         | `./kvm_rockylinux94.sh`   | | generic/empty | oci | alicloud |
+| OS                | script                    | Comments | Generic       | OCI | AliCloud |
+| ----------------- | ------------------------- | -------- | ------------- | --- | -------- |
+| Alma Linux 8.7    | `./kvm_almalinux87.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 8.8    | `./kvm_almalinux88.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 8.9    | `./kvm_almalinux89.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 8.10   | `./kvm_almalinux810.sh`   |          | generic/empty | oci | alicloud |
+| Alma Linux 9.0    | `./kvm_almalinux90.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 9.1    | `./kvm_almalinux91.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 9.2    | `./kvm_almalinux92.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 9.3    | `./kvm_almalinux93.sh`    |          | generic/empty | oci | alicloud |
+| Alma Linux 9.4    | `./kvm_almalinux94.sh`    |          | generic/empty | oci | alicloud |
+| Oracle Linux 8.6  | `./kvm_oraclelinux86.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 8.7  | `./kvm_oraclelinux87.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 8.8  | `./kvm_oraclelinux88.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 8.9  | `./kvm_oraclelinux89.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 8.10 | `./kvm_oraclelinux810.sh` |          | generic/empty | oci | alicloud |
+| Oracle Linux 9.0  | `./kvm_oraclelinux90.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 9.1  | `./kvm_oraclelinux91.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 9.2  | `./kvm_oraclelinux92.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 9.3  | `./kvm_oraclelinux93.sh`  |          | generic/empty | oci | alicloud |
+| Oracle Linux 9.4  | `./kvm_oraclelinux94.sh`  |          | generic/empty | oci | alicloud |
+| Rocky Linux 8.7   | `./kvm_rockylinux87.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 8.8   | `./kvm_rockylinux88.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 8.9   | `./kvm_rockylinux89.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 9.0   | `./kvm_rockylinux90.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 9.1   | `./kvm_rockylinux91.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 9.2   | `./kvm_rockylinux92.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 9.3   | `./kvm_rockylinux93.sh`   |          | generic/empty | oci | alicloud |
+| Rocky Linux 9.4   | `./kvm_rockylinux94.sh`   |          | generic/empty | oci | alicloud |
 
 ## Default credentials
 
-|OS|username|password|
-|--|--------|--------|
-|Windows|Administrator|password|
-|Alma/Rocky/Oracle|root|password|
-|OpenSuse|root|password|
-|Ubuntu|ubuntu|password|
+| OS                | username      | password |
+| ----------------- | ------------- | -------- |
+| Windows           | Administrator | password |
+| Alma/Rocky/Oracle | root          | password |
+| OpenSuse          | root          | password |
+| Ubuntu            | ubuntu        | password |
 
 ## Known Issues
 
